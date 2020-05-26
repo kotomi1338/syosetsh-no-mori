@@ -1,0 +1,48 @@
+<% novel_nodes.each do |novel_node| %>
+  <div class="card">
+    <div class="card-header">
+      <%= novel_node.user.name %>
+      <small class="text-muted">
+        <%= link_to '@'+novel_node.user.id_name, user_path(novel_node.user.id) %>
+      </small>
+    </div>
+    <div class="card-body">
+      <h5 class="card-title">『<%= novel_node.theme %>』</h5>
+      <p><%= truncate(novel_node.content).truncate(100) %></p>
+      <div class="topbutton">
+      <%= link_to("　読む　", novel_node_path(novel_node), {class: 'btn btn-primary btn-sm'}) %>
+      <%= form_tag favorite_novel_node_path(novel_node) do %>
+        <div class="Likes">
+          <div class="Likes-Icon" novel_node_id="<%= novel_node.id %>" style="<%= "background-position: right" if novel_node.favorited_by?(current_user) %>"></div>
+        </div>
+      <% end %>
+      </div>
+    </div>
+  </div>
+<% end %>
+
+<script>
+    $.ajaxPrefilter(function(options, originalOptions, jqXHR) {
+        var token;
+        if (!options.crossDomain) {
+          token = $('meta[name="csrf-token"]').attr('content');
+          if (token) {
+               return jqXHR.setRequestHeader('X-CSRF-Token', token);
+           }
+        }
+    });
+    $('.Likes-Icon').on('click', function() {
+        let $btn = $(this);
+        $.ajax({
+          url: "/novel_nodes/" + $btn.attr('novel_node_id') + "/favorite",
+          type: 'POST',
+        }).done(function(data) {
+          if(data["result"] == "canceled") {
+            $btn.removeClass("HeartAnimation");
+            $btn.css("background-position","left");
+          } else if(data["result"] == "liked") {
+            $btn.addClass("HeartAnimation");
+          }
+        });
+    });
+</script>

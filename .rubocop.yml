@@ -1,0 +1,164 @@
+# ==============================================================================
+# .rubocop
+# ==============================================================================
+AllCops:
+  TargetRubyVersion: 2.5
+  TargetRailsVersion: 5.2
+  Exclude:
+    - db/schema.rb
+    - db/fixtures/**/*
+    - vendor/**/*
+    - public/**/*
+    - tmp/**/*
+    - log/**/*
+    - .git/**/*
+    - swagger/**/*
+    - spec/definitions/**/*
+    - spec/parameters/**/*
+    - test/**/*
+    - config/locales/**/*
+    - scripts/**/*
+
+### Rails
+Rails:
+  Enabled: true
+Rails/Output:
+  Exclude:
+    - db/seeds.rb
+Rails/FilePath:
+  Enabled: false
+Rails/HasManyOrHasOneDependent:
+  Enabled: false
+Rails/OutputSafety:
+  Enabled: false
+Rails/SkipsModelValidations:
+  Enabled: false
+Rails/HttpPositionalArguments:
+  Enabled: false
+Rails/UnknownEnv:
+  Environments:
+    - production
+    - development
+    - test
+    - staging
+    - heroku
+
+### Style
+Style/Documentation:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+Style/BlockDelimiters:
+  Enabled: false
+Style/BlockComments:
+  Enabled: false
+Style/AsciiComments:
+  Enabled: false
+Style/TrailingCommaInArguments:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInArrayLiteral:
+  EnforcedStyleForMultiline: comma
+Style/TrailingCommaInHashLiteral:
+  EnforcedStyleForMultiline: comma
+Style/SignalException:
+  Enabled: false
+Style/RedundantSelf:
+  Enabled: false
+Style/NonNilCheck:
+  Enabled: false
+Style/IfInsideElse:
+  Enabled: false
+Style/MultilineBlockChain:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/GuardClause:
+  Enabled: false
+Style/SymbolArray:
+  Enabled: false
+Style/IfUnlessModifier:
+  Enabled: false
+Style/RescueStandardError:
+  Enabled: false
+Style/RedundantBegin:
+  Exclude:
+    - bin/yarn
+Style/MixinUsage:
+  Exclude:
+    - bin/update
+    - bin/setup
+Style/RescueModifier:
+  Exclude:
+    - 'spec/**/*'
+Style/EmptyMethod:
+  Enabled: false
+Style/CommentAnnotation:
+  Enabled: false
+Style/Encoding:
+  Exclude:
+    - lib/tasks/notifications.thor
+
+### Layout
+Layout/EmptyLines:
+  Enabled: false
+Layout/AlignParameters:
+  Enabled: false
+Layout/IndentArray:
+  EnforcedStyle: consistent
+Layout/EmptyLinesAroundBlockBody:
+  Enabled: false
+Layout/EmptyLinesAroundClassBody:
+  Enabled: false
+Layout/ExtraSpacing:
+  Enabled: false
+Layout/MultilineMethodCallIndentation:
+  Enabled: false
+Layout/EndAlignment:
+  EnforcedStyleAlignWith: variable
+Layout/RescueEnsureAlignment:
+  Enabled: false
+
+### Naming
+Naming/AccessorMethodName:
+  Enabled: false
+Naming/FileName:
+  Enabled: false
+
+### Metrics
+Metrics/LineLength:
+  Max: 200
+  Exclude:
+    - db/seeds.rb
+    - config/initializers/devise.rb
+Metrics/MethodLength:
+  Max: 50
+  Exclude:
+    - 'spec/support/request_helpers.rb'
+Metrics/BlockLength:
+  Max: 30
+  Exclude:
+    - 'lib/tasks/ridgepole.rake'
+    - 'config/environments/*.rb'
+    - 'config/routes.rb'
+    - 'config/routes/*.rb'
+    - 'spec/**/*'
+Metrics/AbcSize:
+  Max: 60
+  Exclude:
+    - 'spec/support/request_helpers.rb'
+Metrics/CyclomaticComplexity:
+  Max: 12
+Metrics/PerceivedComplexity:
+  Max: 13
+Metrics/ParameterLists:
+  CountKeywordArgs: false
+Metrics/ClassLength:
+  Max: 200
+
+### Lint
+Lint/ShadowedArgument:
+  IgnoreImplicitReferences: true
+
+### Bundler
+Bundler/OrderedGems:
+  Enabled: false

@@ -1,0 +1,18 @@
+/ ==============================================================================
+/ app - views - management - sessions - new
+/ ==============================================================================
+.column
+  = form_for(@admin, url: management_session_path(@admin), html: { class: 'ui large form' }) do |f|
+    .ui.stacked.segment
+      .field
+        .ui.left.icon.input
+          i.envelope.icon
+          = f.email_field :email, autofocus: true, placeholder: 'email'
+
+      .field
+        .ui.left.icon.input
+          i.lock.icon
+          = f.password_field :password, autocomplete: 'off', placeholder: 'Password'
+
+      = alert_tag
+      = f.submit 'ログイン', class: 'ui fluid large grey submit button'

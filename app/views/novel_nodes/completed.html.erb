@@ -1,0 +1,4 @@
+<h3>完結した作品</h3>
+
+<%= render partial: 'layouts/novel_nodes', locals: {novel_nodes: @novel_nodes} %>
+<%= will_paginate @novel_nodes, previous_label: '&lt 前へ', next_label: '次へ &gt', renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer %>

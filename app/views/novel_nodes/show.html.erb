@@ -1,0 +1,42 @@
+<div class="card">
+  <div class="card-header text-center">
+    詳細
+  </div>
+  <div class="card-body">
+    <h5 class="card-title text-center">『 <%= @novel_node.theme %> 』</h5>
+    <% @novel_node.ancestors.each do |node| %>
+      <%= link_to '@'+node.user.id_name, user_path(node.user), class: 'novel-author-name' %>
+      <%= link_to " → ", novel_node_path(node),class: 'badge badge-info Link2' %>
+      <div class="card-text novel-node-background">
+        <%= simple_format(node.content) %>
+        <%= link_to '', novel_node_path(node), class: 'novel-node-detail-link' %>
+      </div>
+    <% end %>
+    <%= link_to '@'+@novel_node.user.id_name, user_path(@novel_node.user), class: 'novel-author-name' %>
+    <p class="card-text"><%= simple_format(@novel_node.content) %></p>
+  </div>
+  <div class="card-footer text-right">
+    <%= link_to "続きを書く", sequel_new_novel_node_path(@novel_node), {class: 'btn btn-primary'} %>
+    <a href="https://twitter.com/share?ref_src=twsrc%5Etfw" class="twitter-share-button"  data-show-count="false">Tweet</a><script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+  </div>
+</div>
+
+<% if @novel_node.children.count > 0 %>
+  <div class="card">
+  <div class="card-header text-center">
+    この話の続編
+  </div>
+    <div class="card-body">
+      <% @novel_node.children.each do |node| %>
+        <%= link_to '@'+node.user.id_name, user_path(node.user), class: 'novel-author-name' %>
+        <%= link_to " → ", novel_node_path(node),class: 'badge badge-info Link2' %>
+        <div class="card-text novel-node-background">
+          <%= simple_format(node.content) %>
+          <%= link_to '', novel_node_path(node), class: 'novel-node-detail-link' %>
+        </div>
+      <% end %>
+  </div>
+<% else %>
+  <h5 class="text-center">この話には続きがありません</h5>
+<% end %>
+</div>

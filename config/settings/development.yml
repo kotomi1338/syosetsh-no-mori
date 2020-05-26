@@ -1,0 +1,5 @@
+# ==============================================================================
+# config - settings - development
+# ==============================================================================
+firebase:
+  jwt_config: <%= JSON.generate({ aud: 'PROJECTJNAME', iss: 'https://securetoken.google.com/PROJECTJNAME', public_keys_endpoint: 'https://www.googleapis.com/robot/v1/metadata/x509/securetoken@system.gserviceaccount.com' }) %>

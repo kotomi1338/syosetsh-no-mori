@@ -1,0 +1,41 @@
+/ ==============================================================================
+/ app - views - layouts - management - application
+/ ==============================================================================
+doctype html
+html
+  head
+    meta(charset='utf-8')
+    meta(name='viewport' content='width=device-width,initial-scale=1.0,user-scalable=no')
+    meta(http-equiv='content-language',content='ja')
+    = stylesheet_link_tag    'management/application', media: 'all'
+    = javascript_include_tag 'management/application'
+    = csrf_meta_tags
+    title 管理画面
+  body
+    / side bar
+    .ui.inverted.left.inline.vertical.visible.sidebar.menu
+      = link_to management_root_path, class: 'item banner' do
+        h3 管理画面
+      = link_to edit_management_account_path, class: 'item ui inverted' do
+        .title
+          i.user.icon
+          = current_user.name
+          br
+          = current_user.email
+
+
+      = link_to management_admins_path, class: 'item ui inverted' do
+        .title
+          | システム管理者
+      = link_to management_destroy_session_path, method: :delete, class: 'item ui inverted' do
+        .title
+          i.sign.out.icon
+          | ログアウト
+
+    / main contents
+    .pusher style="width: calc(100% - 260px);"
+      .ui.container
+        -if flash.present?
+          .row.notification
+            = alert_tag
+        == yield

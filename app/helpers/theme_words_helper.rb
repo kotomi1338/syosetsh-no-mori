@@ -1,0 +1,2 @@
+module ThemeWordsHelper
+end

@@ -1,0 +1,15 @@
+// =============================================================================
+// app - assets - javascripts - management - application
+// =============================================================================
+//= require jquery
+//= require rails-ujs
+//= require semantic-ui
+//= require management/Semantic-UI-Alert
+
+$(function() {
+  $('.ui.accordion').accordion({
+    exclusive: false,
+  });
+  $('.ui.dropdown').dropdown({ fullTextSearch: true });
+  $('.ui.checkbox').checkbox();
+})

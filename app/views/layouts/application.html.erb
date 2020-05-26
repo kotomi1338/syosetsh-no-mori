@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- Required meta tags -->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+
+  <!-- Font -->
+  <link href="https://use.fontawesome.com/releases/v5.6.1/css/all.css" rel="stylesheet">
+  <script src="https://twemoji.maxcdn.com/v/latest/twemoji.min.js" crossorigin="anonymous"></script>
+  <!-- twemoji用 -->
+  <style>
+    img.emoji {
+      height: 1em;
+      width: 1em;
+      margin: 0 .05em 0 .1em;
+      vertical-align: -0.1em;
+    }
+  </style>
+  <%= csrf_meta_tags %>
+
+  <%= stylesheet_link_tag 'application', media: 'all' %>
+  <%= javascript_include_tag 'application' %>
+  <title>あつまれ！小説の森</title>
+
+</head>
+<body>
+<!-- Optional JavaScript -->
+<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.0.js" integrity="sha256-r/AaFHrszJtwpe+tHyNi/XCfMxYpbsRg2Uqn0x3s2zc=" crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js" integrity="sha384-Q6E9RHvbIyZFJoft+2mJbHaEWldlvI9IOYy5n3zV9zzTtmI3UksdQRVvoxMfooAo" crossorigin="anonymous"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
+
+  <div class="d-flex flex-column flex-md-row align-items-center p-3 px-md-4 mb-3 bg-white border-bottom shadow-sm" >
+    <h5 class="my-0 mr-md-auto font-weight-normal"><%= link_to "あつまれ！小説の森", root_path, {class: "link"} %></h5>
+    <nav class="my-2 my-md-0 mr-md-3">
+      <div class="btn-group">
+        <%= link_to("新着投稿", novel_nodes_path, {class: 'btn btn-outline-danger btn-lg'}) %>
+        <%= link_to("完結した作品", completed_novel_nodes_path, {class: 'btn btn-outline-success btn-lg'}) %>
+        <%= link_to("📝テーマを投稿する", new_theme_word_path, {class: 'btn btn-outline-info btn-lg'}) %>
+        <%= link_to("✍テーマを選んで小説を書く", new_novel_node_path, {class: 'btn btn-outline-primary btn-lg'}) %>
+        <% if current_user %>
+          <button type="button" class="btn btn-secondary dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            <%= link_to current_user.name, user_path(current_user.id), {class: "link2"}  %>
+          </button>
+          <div class="dropdown-menu dropdown-menu-right">
+            <button class="dropdown-item" type="button"> <%= link_to "プロフィール", user_path(current_user.id), class:"link" %></button>
+            <button class="dropdown-item" type="button"> <%= link_to "設定", edit_user_path(current_user.id), class:"link" %></button>
+            <button class="dropdown-item" type="button"> <%= link_to "ログアウト", session_path, method: "delete", class:"link" %></button>
+            <% end %>
+        </div>
+      </div>
+    </nav>
+  </div>
+
+<div class="container">
+  <%= yield %>
+</div>
+
+<script>
+    twemoji.parse(document.body);
+</script>
+</body>
+</html>

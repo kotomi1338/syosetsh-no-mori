@@ -1,0 +1,24 @@
+# ==============================================================================
+# config - database
+# ==============================================================================
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  host: <%= ENV['POSTGRES_HOST'] %>
+  user: <%= ENV['POSTGRES_USER'] %>
+  password: <%= ENV['POSTGRES_PASSWORD'] %>
+  pool: <%= ENV['MAX_THREADS'] ||  5 %>
+
+development: &development
+  <<: *default
+  database: devcamp2020spring_development
+
+test:
+  <<: *default
+  database: devcamp2020spring_test
+
+production:
+  <<: *default
+  adapter: postgresql
+  encoding: unicode
+  pool: 5

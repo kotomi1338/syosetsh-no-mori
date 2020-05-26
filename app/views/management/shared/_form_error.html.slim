@@ -1,0 +1,10 @@
+/ ==============================================================================
+/ app - views - admin - shared - _form error
+/ ==============================================================================
+- if target.errors.any?
+  .ui.red.message
+    .header エラーが発生しました
+    ul.list
+      - target.errors.full_messages.each do |message|
+        li
+          = message

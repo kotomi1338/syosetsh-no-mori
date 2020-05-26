@@ -1,0 +1,12 @@
+<h3><%= @user.name %></h3>
+<small class="text-muted">@<%= @user.id_name %></small>
+<br>
+<%= @user.bio %>
+<br>
+<br>
+<%= link_to "小説一覧", user_path(@user), class: "btn btn-outline-danger btn-lg" %>
+<hr>
+<h3><%= @user.name %>がいいねした小説</h3>
+<%= render partial: 'layouts/novel_nodes', locals: {novel_nodes: @novel_nodes} %>
+
+<%= will_paginate @novel_nodes, previous_label: '&lt 前へ', next_label: '次へ &gt', renderer: WillPaginate::ActionView::Bootstrap4LinkRenderer %>

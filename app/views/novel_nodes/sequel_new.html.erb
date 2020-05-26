@@ -1,0 +1,24 @@
+<h3>続きから書く</h3>
+<div class="card ">
+  <div class="card-body">
+        <h3>『 <%= @novel_node.parent.theme %> 』</h3>
+
+        <% @novel_node.ancestors.each do |node| %>
+          <p class="card-text"><%= simple_format(node.content) %></p>
+        <% end %>
+
+        <div class="form-group">
+          <%= form_with model: @novel_node, url: sequel_create_novel_node_path(@novel_node.parent), local: true do |form| %>
+            <%= form.text_area :content, {class: 'form-control', id: 'exampleFormControlTextarea1', rows: '15'} %>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-12 col-md-10 col-lg-8">
+                  <%= form.submit "投稿する", {class: 'btn btn-primary'} %>
+                  <%= link_to "キャンセル", root_path, {class: 'btn btn-warning '} %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+        </div>
+  </div>
+</div>

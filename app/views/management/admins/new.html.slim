@@ -1,0 +1,35 @@
+/ ==============================================================================
+/ app - views - management - system admins - new
+/ ==============================================================================
+.ui.basic.segment
+  = render 'shared/breadcrumb',
+    contents: [ {name: 'Home', path: management_root_path},
+      {name: '管理者アカウント', path: management_admins_path},
+      {name: '管理者アカウント新規作成', path: nil},
+    ]
+
+  h1.ui.dividing.header
+    .content 管理者アカウント 新規作成
+  .ui.grid.stackable
+    .row
+      .sixteen.wide.column
+        .ui.segment
+          = form_with(model: [:management, @admin], html: { class: 'ui form' }, local: true) do |f|
+            = render 'management/shared/form_error', target: @admin
+
+            .field
+              = f.label :name
+              = f.text_field :name
+            .field
+              = f.label :email
+              = f.email_field :email
+            .field
+              = f.label :password
+              = f.password_field :password, autocomplete: 'off'
+            .field
+              = f.label :password_confirmation
+              = f.password_field :password_confirmation, autocomplete: 'off'
+
+            .field
+              = f.submit '保存', class: "ui blue button"
+              = link_to '管理者アカウント一覧に戻る', management_admins_path, class: 'ui button gray'

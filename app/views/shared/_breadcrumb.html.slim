@@ -1,0 +1,11 @@
+/ ==============================================================================
+/ app - views - shared - _breadcrumb
+/ ==============================================================================
+.ui.large.breadcrumb
+  - contents[0..-2].each do |content|
+    - if content[:path].present?
+      = link_to "#{content[:name]}", content[:path], class: "section"
+    - else
+      .section = content[:name]
+    i.right.chevron.icon.divider
+  .active.section = contents.last[:name]

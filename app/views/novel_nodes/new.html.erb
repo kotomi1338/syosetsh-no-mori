@@ -1,0 +1,32 @@
+<h2>小説を投稿する</h2>
+<div class="card ">
+  <div class="card-body">
+    <div class="row">
+      <div class="col-12">
+        <h3>『 <%= @novel_node_with_theme.get_theme%> 』</h3>
+
+        <h6><span class="badge badge-info">だれが</span> <%= @theme.who.content %></h6>
+        <h6><span class="badge badge-info">どこで</span> <%= @theme.where.content %></h6>
+        <h6><span class="badge badge-info">なにを</span> <%= @theme.what.content %></h6>
+
+        <div class="form-group">
+          <%= form_with model: @novel_node_with_theme, url: novel_nodes_path, local: true do |form| %>
+            </div>
+            <%= form.text_area :novel_node_content, {class: 'form-control', id: 'exampleFormControlTextarea1', rows: '15'} %>
+            <%= form.hidden_field :who_id %>
+            <%= form.hidden_field :where_id %>
+            <%= form.hidden_field :what_id %>
+            <div class="card-footer">
+              <div class="row">
+                <div class="col-12 col-md-10 col-lg-8">
+                  <%= form.submit "投稿する", {class: 'btn btn-primary'} %>
+                  <%= link_to "キャンセル", root_path, {class: 'btn btn-warning '} %>
+                  <%= link_to " ", new_novel_node_path, {class: 'btn btn-success fas fa-random'} %>
+                </div>
+              </div>
+            </div>
+          <% end %>
+          </div>
+    </div>
+  </div>
+</div>

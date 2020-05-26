@@ -1,0 +1,29 @@
+/ ==============================================================================
+/ app - views - management - system admins - edit
+/ ==============================================================================
+.ui.basic.segment
+  = render 'shared/breadcrumb',
+    contents: [ {name: 'Home', path: management_root_path},
+      {name: '管理者アカウント', path: management_admins_path},
+      {name: @admin.name, path: nil},
+      {name: '編集', path: nil},
+    ]
+
+  h1.ui.dividing.header
+    .content システム管理者アカウント 編集
+  .ui.grid.stackable
+    .row
+      .sixteen.wide.column
+        .ui.segment
+          = render 'management/shared/form_error', target: @admin
+
+          h2 アカウント情報変更
+          = form_for(@admin, url: { controller: :admins, action: :update }, html: { class: 'ui form' }) do |f|
+            .field
+              = f.label :name
+              = f.text_field :name
+            .field
+              = f.label :email
+              = f.email_field :email, autofocus: true
+            .field
+              = f.submit '保存', class: "ui blue button"

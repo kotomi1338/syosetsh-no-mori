@@ -1,0 +1,47 @@
+/ ==============================================================================
+/ app - views - management - accounts - edit
+/ ==============================================================================
+.ui.basic.segment
+  = render 'shared/breadcrumb',
+    contents: [ {name: 'Home', path: management_root_path},
+      {name: 'アカウント情報', path: nil},
+    ]
+
+  h1.ui.dividing.header
+    .content = "アカウント情報"
+
+  .ui.grid.stackable
+    .row
+      .sixteen.wide.column
+        .ui.segment
+          = render 'management/shared/form_error', target: @account
+
+          h2 アカウント情報変更
+          = form_for(@account, url: { controller: :accounts, action: :update }, html: { class: 'ui form' }) do |f|
+            .field
+              = f.label :name
+              = f.text_field :name
+            .field
+              = f.label :email
+              = f.email_field :email, autofocus: true
+            .field
+              = f.submit '保存', class: "ui blue button"
+
+          .ui.divider
+
+          h2 パスワード変更
+          = form_for(@account, url: { controller: :accounts, action: :password }, html: { class: 'ui form' }) do |f|
+            .field
+              = f.label :current_password
+              = f.password_field :current_password, autocomplete: 'off'
+
+            .ui.hidden.divider
+
+            .field
+              = f.label :password
+              = f.password_field :password, autocomplete: 'off'
+            .field
+              = f.label :password_confirmation
+              = f.password_field :password_confirmation, autocomplete: 'off'
+            .field
+              = f.submit '変更', class: "ui blue button"

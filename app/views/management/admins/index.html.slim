@@ -1,0 +1,43 @@
+/ ==============================================================================
+/ app - views - management - system admins - index
+/ ==============================================================================
+.ui.basic.segment
+  = render 'shared/breadcrumb',
+    contents: [ {name: 'Home', path: management_root_path},
+      {name: '管理者アカウント', path: nil},
+    ]
+
+  h1.ui.dividing.header
+    .content
+      | 管理者アカウント 管理
+
+  .ui.stackable.grid
+    .right.aligned.sixteen.wide.column
+      = link_to '新規追加', new_management_admin_path, class: 'ui grey button'
+
+  table.ui.striped.celled.table
+    thead
+      tr
+        th = Admin.human_attribute_name(:name)
+        th = Admin.human_attribute_name(:email)
+        th = Admin.human_attribute_name(:created_at)
+        th
+    tbody
+      - @admins.each do |admin|
+        - if admin == current_user
+          tr.disabled
+            td = admin.name
+            td = admin.email
+            td = admin.created_at
+            td.collapsing.center.aligned ログイン中
+        - else
+          tr
+            td = admin.name
+            td = admin.email
+            td = admin.created_at
+            td.collapsing.center.aligned
+              = link_to '編集', edit_management_admin_path(admin), class: 'ui mini button grey'
+              = link_to '削除', management_admin_path(admin), method: :delete, class: 'ui mini button red inverted', data: { confirm: '管理者アカウントを削除します。よろしいですか？' }
+
+  .ui.center.aligned.grid.pagination
+    == pagy_semantic_nav(@pagy)
