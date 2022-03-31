@@ -13,7 +13,7 @@ ruby '2.6.5'
 # Rails
 gem 'rails', '~> 6.0'
 # Use Puma as the app server
-gem 'puma', '~> 4.1'
+gem 'puma', '~> 4.3'
 # Use postgresql as the database for Active Record
 gem 'pg', '~> 1.1'
 # Use Redis for in-memory database
